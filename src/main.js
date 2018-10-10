@@ -2,12 +2,30 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import './plugins/element.js'
+import './element-variables.scss'
+import Element from 'element-ui'
 
+import i18n from './lang'
+import { getApp } from './utils/lfStore'
+import './icons'
+
+if (process.env.NODE_ENV !== 'production') require('@/mock')
+Vue.use(Element, {
+  size: 'medium',
+  i18n: (key, value) => i18n.t(key, value)
+})
 Vue.config.productionTip = false
+
+getApp().then(data => {
+  if (data) {
+    store.commit('setApp', data)
+    i18n.locale = data.language
+  }
+})
 
 new Vue({
   store,
   router,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
