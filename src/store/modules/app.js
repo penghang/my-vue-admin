@@ -1,6 +1,9 @@
 import { setApp } from '@/utils/lfStore'
 const defaults = {
-  sidebar: {},
+  sidebar: {
+    opened: true,
+    withoutAnimation: false
+  },
   language: 'zh',
   size: 'medium'
 }
