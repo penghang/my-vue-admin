@@ -1,9 +1,7 @@
 import { setApp } from '@/utils/lfStore'
 const defaults = {
-  sidebar: {
-    opened: true,
-    withoutAnimation: false
-  },
+  animation: true,
+  sidebarCollapse: false,
   language: 'zh',
   size: 'medium'
 }
@@ -13,9 +11,10 @@ const app = {
   },
   mutations: {
     toggleSideBar(state) {
-
-    },
-    closeSideBar(state) {
+      var collapse = !state.sidebarCollapse
+      state.sidebarCollapse = collapse
+      defaults.sidebarCollapse = collapse
+      setApp(defaults)
     },
     setLanguage(state, language) {
       state.language = language
