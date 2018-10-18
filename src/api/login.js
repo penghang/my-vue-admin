@@ -6,20 +6,20 @@ function login(username, password) {
     password
   }
   return request({
-    url: '/login/login',
+    url: 'login/login',
     method: 'post',
     data
   })
 }
 function logout() {
   return request({
-    url: '/login/logout',
+    url: 'login/logout',
     method: 'post'
   })
 }
 function getUserInfo(token) {
   return request({
-    url: '/user/info',
+    url: 'user/info',
     method: 'get',
     params: { token }
   })

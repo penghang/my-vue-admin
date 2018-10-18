@@ -1,6 +1,12 @@
+const defaultView = {
+  fullPath: '/home',
+  name: 'home',
+  path: '/home',
+  title: 'home'
+}
 const tagsView = {
   state: {
-    visitedViews: [],
+    visitedViews: [defaultView],
     cachedViews: []
   },
   mutations: {
@@ -16,6 +22,61 @@ const tagsView = {
       if (state.cachedViews.includes(view.name)) return
       if (!view.meta.noCache) {
         state.cachedViews.push(view.name)
+      }
+    },
+    delVisitedView: (state, view) => {
+      for (const [i, v] of state.visitedViews.entries()) {
+        if (v.path === view.path) {
+          state.visitedViews.splice(i, 1)
+          break
+        }
+      }
+    },
+    delCachedView: (state, view) => {
+      for (const i of state.cachedViews) {
+        if (i === view.name) {
+          const index = state.cachedViews.indexOf(i)
+          state.cachedViews.splice(index, 1)
+          break
+        }
+      }
+    },
+
+    delOthersVisitedViews: (state, view) => {
+      if (view.name === defaultView.path) {
+        state.visitedViews = [defaultView]
+      } else {
+        for (const [i, v] of state.visitedViews.entries()) {
+          if (v.path === view.path) {
+            state.visitedViews = [defaultView, state.visitedViews[i]]
+            break
+          }
+        }
+      }
+    },
+    delOthersCachedViews: (state, view) => {
+      for (const i of state.cachedViews) {
+        if (i === view.name) {
+          const index = state.cachedViews.indexOf(i)
+          state.cachedViews = state.cachedViews.slice(index, index + 1)
+          break
+        }
+      }
+    },
+
+    delAllVisitedViews: state => {
+      state.visitedViews = [defaultView]
+    },
+    delAllCachedViews: state => {
+      state.cachedViews = []
+    },
+
+    updateVisitedView: (state, view) => {
+      for (let v of state.visitedViews) {
+        if (v.path === view.path) {
+          v = Object.assign(v, view)
+          break
+        }
       }
     }
   },

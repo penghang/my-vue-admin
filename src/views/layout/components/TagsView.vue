@@ -12,13 +12,15 @@
         @click.middle.native="closeSelectedTag(tag)"
         @contextmenu.prevent.native="openMenu(tag,$event)">
         {{ generateTitle(tag.title) }}
-        <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
+        <span v-if="tag.name !== 'home'" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
-      <li @click="closeSelectedTag(selectedTag)">{{ $t('tagsView.close') }}</li>
-      <li @click="closeOthersTags">{{ $t('tagsView.closeOthers') }}</li>
+      <template v-if="selectedTag.name !== 'home'">
+        <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
+        <li @click="closeSelectedTag(selectedTag)">{{ $t('tagsView.close') }}</li>
+        <li @click="closeOthersTags(selectedTag)">{{ $t('tagsView.closeOthers') }}</li>
+      </template>
       <li @click="closeAllTags">{{ $t('tagsView.closeAll') }}</li>
     </ul>
   </div>
@@ -65,6 +67,7 @@ export default {
       return route.path === this.$route.path
     },
     addViewTags() {
+      console.log(this.$route, this.$router)
       const { name } = this.$route
       if (name) {
         this.$store.dispatch('addView', this.$route)
@@ -123,8 +126,8 @@ export default {
     openMenu(tag, e) {
       this.visible = true
       this.selectedTag = tag
-      const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
-      this.left = e.clientX - offsetLeft + 15 // 15: margin right
+      // const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
+      this.left = e.clientX + 15 // 15: margin right
       this.top = e.clientY
     },
     closeMenu() {

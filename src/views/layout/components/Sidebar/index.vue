@@ -5,8 +5,6 @@
       :default-active="$route.path"
       :collapse="sidebarCollapse"
       mode="vertical"
-      text-color="#bfcbd9"
-      active-text-color="#409EFF"
     >
       <sidebar-item v-for="route in permissionRouters" :key="route.path" :item="route" :base-path="route.path"/>
     </el-menu>
@@ -33,6 +31,24 @@ export default {
     overflow-x: hidden!important;
     .el-menu {
       border-right: 0;
+      background: transparent;
+    }
+    .el-menu-item {
+      &.is-active,
+      &:hover {
+        background: hsla(0,0%,100%,.5);
+        color: #2f74ff;
+      }
+    }
+    .el-submenu__title {
+      &.is-active,
+      &:hover {
+        i {
+          color: #2f74ff;
+        }
+        background: hsla(0,0%,100%,.5);
+        color: #2f74ff;
+      }
     }
   }
 </style>

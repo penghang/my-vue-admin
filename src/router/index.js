@@ -6,6 +6,17 @@ Vue.use(Router)
 
 const routerMap = [
   {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/login/index'),
@@ -15,6 +26,7 @@ const routerMap = [
   {
     path: '',
     component: Layout,
+    redirect: 'home',
     children: [
       {
         path: '/home',
@@ -36,7 +48,7 @@ const routerMap = [
     children: [
       {
         path: 'user',
-        component: () => import('@/views/errorPage/401'),
+        component: () => import('@/views/system/user'),
         name: 'user',
         meta: { title: 'user' }
       },
@@ -171,7 +183,7 @@ const routerMap = [
 ]
 
 export default new Router({
-  mode: 'history', // require service support
+  // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: routerMap
 })

@@ -1,3 +1,5 @@
+@import './transition.scss';
+
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -33,5 +35,28 @@ html {
     content: " ";
     clear: both;
     height: 0;
+  }
+}
+a, a:hover, a:active {
+  text-decoration: none;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.app-container {
+  padding: 20px;
+}
+
+.pagination-container {
+  margin-top: 30px;
+}
+
+.filter-container {
+  padding-bottom: 10px;
+  .filter-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 10px;
   }
 }

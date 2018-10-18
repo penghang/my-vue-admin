@@ -25,11 +25,13 @@ export default {
 
 <style scoped>
 .app-main {
-  /*84 = navbar + tags-view = 50 +34 */
-  min-height: calc(100vh - 84px);
+  /*94 = header + tags-view = 60 +34 */
+  min-height: calc(100vh - 94px);
   width: 100%;
   position: relative;
   overflow: hidden;
+  border-left: 1px solid #cfd7e5;
+  background: #fff;
 }
 </style>
 

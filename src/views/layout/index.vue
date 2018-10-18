@@ -8,8 +8,8 @@
     </div>
     <!-- 布局 -->
     <div class="app-content">
-      <sidebar class="app-nav clearfix" />
-      <div class="app-main">
+      <sidebar class="app-sidebar clearfix" />
+      <div class="app-main-wrapper">
         <tags-view/>
         <app-main/>
       </div>
@@ -65,6 +65,7 @@ $sidebar_width: 200px;
 $sidebar_collapse_width: 65px;
 .app-wrapper {
   height: 100%;
+  background-color: #ebf1f6;
   padding-top: $header_height;
   .app-header {
     height: $header_height;
@@ -83,19 +84,21 @@ $sidebar_collapse_width: 65px;
     }
     .hamburger-container {
       height: 100%;
-      width: 65px;
+      width: 50px;
+      text-align: center;
+      transform: translateY(3px);
     }
   }
   .app-content {
     height: 100%;
     padding-left: $sidebar_width;
-    .app-nav {
+    .app-sidebar {
       float: left;
       width: $sidebar_width;
       height: 100%;
       margin-left: -$sidebar_width;
     }
-    .app-main {
+    .app-main-wrapper {
       height: 100%;
     }
   }
