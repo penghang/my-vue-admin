@@ -61,6 +61,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       templateParameters: {
         BASE_URL: config.dev.assetsPublicPath + config.dev.assetsSubDirectory,
       },
+      chunksSortMode: 'none'
     }),
   ]
 })

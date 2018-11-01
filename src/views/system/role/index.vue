@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input :placeholder="$t('table.username')" v-model="listQuery.username" clearable style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input :placeholder="$t('table.rolename')" v-model="listQuery.rolename" clearable style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">{{ $t('table.search') }}</el-button>
     </div>
 
@@ -17,9 +17,7 @@
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('table.username')" align="center" prop="username" width="100" />
-      <el-table-column :label="$t('table.realname')" align="center" prop="realname" width="150" />
-      <el-table-column :label="$t('table.address')" align="center" prop="address" />
+      <el-table-column :label="$t('table.rolename')" align="center" prop="rolename" />
       <el-table-column :label="$t('table.status')" align="center" width="80" >
         <template slot-scope="scope">
           <div class="pointer" @click="handleChangeStatus(scope)">
@@ -39,11 +37,11 @@
   </div>
 </template>
 <script>
-import { userList } from '@/api/user'
+import { roleList } from '@/api/role'
 import { pagingMixin } from '@/mixins/table'
 import waves from '@/directive/waves' // 水波纹指令
 export default {
-  name: 'User',
+  name: 'Role',
   directives: {
     waves
   },
@@ -62,14 +60,14 @@ export default {
       listLoading: false,
       list: [],
       listQuery: {
-        username: ''
+        rolename: ''
       }
     }
   },
   methods: {
     listLoad() {
       this.listLoading = true
-      userList(this.listQuery).then(response => {
+      roleList(this.listQuery).then(response => {
         this.list = response.data.list
         this.total = response.data.total
         this.listLoading = false

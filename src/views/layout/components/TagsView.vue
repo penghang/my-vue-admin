@@ -12,7 +12,7 @@
         @click.middle.native="closeSelectedTag(tag)"
         @contextmenu.prevent.native="openMenu(tag,$event)">
         {{ generateTitle(tag.title) }}
-        <span v-if="tag.name !== 'home'" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
+        <span v-if="tag.name !== 'Home'" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
@@ -67,7 +67,7 @@ export default {
       return route.path === this.$route.path
     },
     addViewTags() {
-      console.log(this.$route, this.$router)
+      // console.log(this.$route, this.$router)
       const { name } = this.$route
       if (name) {
         this.$store.dispatch('addView', this.$route)

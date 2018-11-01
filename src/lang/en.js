@@ -113,6 +113,7 @@ export default {
     address: 'Address',
     status: 'Status',
     edit: 'Edit',
+    rolename: 'Rolename',
 
     dynamicTips1: 'Fixed header, sorted by header order',
     dynamicTips2: 'Not fixed header, sorted by click order',

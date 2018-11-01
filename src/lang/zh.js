@@ -113,6 +113,7 @@ export default {
     address: '地址',
     status: '状态',
     edit: '编辑',
+    rolename: '角色',
 
     dynamicTips1: '固定表头, 按照表头顺序排序',
     dynamicTips2: '不固定表头, 按照点击顺序排序',

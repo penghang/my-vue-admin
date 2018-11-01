@@ -18,7 +18,7 @@ const routerMap = [
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import('@/views/login/index'),
     meta: { title: 'login' },
     hidden: true
@@ -31,7 +31,7 @@ const routerMap = [
       {
         path: '/home',
         component: () => import('@/views/home/index'),
-        name: 'home',
+        name: 'Home',
         meta: { title: 'home', icon: 'dashboard' }
       }
     ]
@@ -49,107 +49,17 @@ const routerMap = [
       {
         path: 'user',
         component: () => import('@/views/system/user'),
-        name: 'user',
+        name: 'User',
         meta: { title: 'user' }
       },
       {
         path: 'role',
-        component: () => import('@/views/errorPage/404'),
-        name: 'role',
+        component: () => import('@/views/system/role'),
+        name: 'Role',
         meta: { title: 'role' }
       },
       {
         path: 'permission',
-        component: () => import('@/views/errorPage/404'),
-        name: 'pagePermission',
-        meta: { title: 'pagePermission' }
-      }
-    ]
-  },
-  {
-    path: '/system1',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'SystemPages',
-    meta: {
-      title: 'system',
-      icon: '404'
-    },
-    children: [
-      {
-        path: 'user',
-        component: () => import('@/views/errorPage/401'),
-        name: 'user',
-        meta: { title: 'user' }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/errorPage/404'),
-        name: 'role',
-        meta: { title: 'role' }
-      },
-      {
-        path: 'permission',
-        component: () => import('@/views/errorPage/404'),
-        name: 'pagePermission',
-        meta: { title: 'pagePermission' }
-      }
-    ]
-  },
-  {
-    path: '/system2',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'SystemPages',
-    meta: {
-      title: 'system',
-      icon: '404'
-    },
-    children: [
-      {
-        path: 'user',
-        component: () => import('@/views/errorPage/401'),
-        name: 'user',
-        meta: { title: 'user' }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/errorPage/404'),
-        name: 'role',
-        meta: { title: 'role' }
-      },
-      {
-        path: 'permission',
-        component: () => import('@/views/errorPage/404'),
-        name: 'pagePermission',
-        meta: { title: 'pagePermission' }
-      }
-    ]
-  },
-  {
-    path: '/system3',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'SystemPages',
-    meta: {
-      title: 'system',
-      icon: '404'
-    },
-    children: [
-      {
-        path: 'user1',
-        component: () => import('@/views/errorPage/401'),
-        name: 'user',
-        meta: { title: 'user' }
-      },
-      {
-        path: 'role1',
-        component: () => import('@/views/errorPage/404'),
-        name: 'role',
-        meta: { title: 'role' }
-      },
-      {
-        path: 'permission1',
         component: () => import('@/views/errorPage/404'),
         name: 'pagePermission',
         meta: { title: 'pagePermission' }

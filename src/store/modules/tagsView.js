@@ -1,6 +1,6 @@
 const defaultView = {
   fullPath: '/home',
-  name: 'home',
+  name: 'Home',
   path: '/home',
   title: 'home'
 }
@@ -43,7 +43,7 @@ const tagsView = {
     },
 
     delOthersVisitedViews: (state, view) => {
-      if (view.name === defaultView.path) {
+      if (view.name === defaultView.name) {
         state.visitedViews = [defaultView]
       } else {
         for (const [i, v] of state.visitedViews.entries()) {
@@ -55,12 +55,10 @@ const tagsView = {
       }
     },
     delOthersCachedViews: (state, view) => {
-      for (const i of state.cachedViews) {
-        if (i === view.name) {
-          const index = state.cachedViews.indexOf(i)
-          state.cachedViews = state.cachedViews.slice(index, index + 1)
-          break
-        }
+      if (view.path === defaultView.path) {
+        state.cachedViews = [defaultView.name]
+      } else {
+        state.cachedViews = [defaultView.name, view.name]
       }
     },
 
@@ -68,7 +66,7 @@ const tagsView = {
       state.visitedViews = [defaultView]
     },
     delAllCachedViews: state => {
-      state.cachedViews = []
+      state.cachedViews = [defaultView.name]
     },
 
     updateVisitedView: (state, view) => {

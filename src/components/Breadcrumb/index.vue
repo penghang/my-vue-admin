@@ -30,7 +30,7 @@ export default {
     generateTitle,
     getBreadcrumb() {
       const { path } = this.$route
-      const matched = [{ path: '/home', title: 'home' }]
+      const matched = []
       this.$route.matched.forEach(item => {
         if (item.name && item.name !== 'home') {
           const toPath = pathToRegexp.compile(item.path)
