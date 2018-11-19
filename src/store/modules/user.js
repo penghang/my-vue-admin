@@ -8,27 +8,42 @@ const user = {
   },
   mutations: {
     setUser: (state, { username, token }) => {
+      console.log( username, token);
       state.token = token
       state.username = username
     },
     setToken: (state, token) => {
+     // console.log(token);
       state.token = token
+    },
+    logout: (state) => {
+      state.token = '';
+      state.username = ''
     }
   },
   actions: {
     login({ commit }, { username, password }) {
       const name = username.trim()
       return new Promise((resolve, reject) => {
+
         setName(name)
         login(name, password).then(response => {
-          const data = response.data
+          const data = response.data;
+          console.log(response);
           commit('setToken', data.token)
           setToken(data.token)
-          resolve()
+          resolve({username,password})
         }).catch(error => {
           reject(error)
         })
       })
+    },
+    loginOut({commit}){
+      return new Promise((resolve,reject) => {
+        commit('logout');
+        resolve()
+      })
+      
     }
   }
 }

@@ -42,6 +42,7 @@ export default {
   },
   computed: {
     visitedViews() {
+       
       return this.$store.state.tagsView.visitedViews
     }
   },
@@ -67,9 +68,11 @@ export default {
       return route.path === this.$route.path
     },
     addViewTags() {
-      // console.log(this.$route, this.$router)
+      
       const { name } = this.$route
+      
       if (name) {
+        
         this.$store.dispatch('addView', this.$route)
       }
       return false

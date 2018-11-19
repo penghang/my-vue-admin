@@ -79,6 +79,7 @@ const tagsView = {
     }
   },
   actions: {
+   
     addView({ commit }, view) {
       commit('addVisitedView', view)
       commit('addCachedView', view)

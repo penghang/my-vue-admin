@@ -33,7 +33,9 @@
             <svg-icon icon-class="eye" />
           </span>
         </el-form-item>
-
+        <div class="lose-pwd">
+          <span @click="losePwd">忘记密码?</span>
+        </div>  
         <el-button :loading="loading" type="primary" @click.native.prevent="login('loginForm')">{{ $t('login.logIn') }}</el-button>
       </div>
     </el-form>
@@ -43,6 +45,7 @@
 <script>
 import { validUsername, validPassword } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
+import Cookies from 'js-cookie'
 export default {
   name: 'Login',
   components: { LangSelect },
@@ -82,7 +85,8 @@ export default {
   watch: {
     $route: {
       handler: route => {
-        this.redirect = route.query && route.query.redirect
+        console.log(route);
+      //  this.redirect = route.query && route.query.redirect
       },
       immediate: true
     }
@@ -96,12 +100,15 @@ export default {
       }
     },
     login(formName) {
+     
       this.$refs[formName].validate((valid) => {
+        console.log(valid);
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('login', this.loginForm).then(() => {
+          this.loading = true;
+          this.$store.dispatch('login', this.loginForm).then((obj) => {
             this.loading = false
-            this.$router.push({ path: this.redirect || '/' })
+            Cookies.set("username",obj.username);
+            this.$router.push({path:'/home'})
           }).catch(() => {
             this.loading = false
           })
@@ -110,6 +117,9 @@ export default {
           return false
         }
       })
+    },
+    losePwd(){
+      this.$router.push({path:"/losepwd/find"});
     }
   }
 }
@@ -174,6 +184,15 @@ export default {
       padding: $form_padding;
       .el-button {
         width: 100%;
+      }
+      .lose-pwd {
+        font-size: 14px;
+        color: $light_gray;
+        padding-bottom: 10px;
+        text-align: right;
+        span{
+          cursor: pointer;
+        }
       }
     }
     .svg-container {

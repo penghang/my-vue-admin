@@ -46,3 +46,11 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  .el-breadcrumb{
+    .el-breadcrumb__item{
+      line-height: 60px;
+    }
+    
+  }
+</style>

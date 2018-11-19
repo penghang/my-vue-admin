@@ -4,6 +4,7 @@ import app from './modules/app'
 import user from './modules/user'
 import permission from './modules/permission'
 import tagsView from './modules/tagsView'
+import theme from './modules/theme'
 
 Vue.use(Vuex)
 
@@ -12,8 +13,10 @@ const store = new Vuex.Store({
     app,
     user,
     permission,
-    tagsView
+    tagsView,
+    theme
   },
+  
   getters: {
     sidebarCollapse: state => state.app.sidebarCollapse,
     language: state => state.app.language,

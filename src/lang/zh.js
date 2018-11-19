@@ -10,6 +10,7 @@ export default {
     guide: '引导页',
     permission: '权限测试页',
     pagePermission: '页面权限',
+    pageSetting:'个人设置',
     directivePermission: '指令权限',
     icons: '图标',
     components: '组件',
