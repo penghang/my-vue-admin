@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/views/layout'
-import store from '@/store'
-//cookie
+// cookie
 import Cookies from 'js-cookie'
-//顶部进度条
+// 顶部进度条
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 Vue.use(Router)
@@ -30,16 +29,16 @@ const routerMap = [
     hidden: true
   },
   {
-    path:"/losepwd",
-    name:"Losepwd",
+    path: '/losepwd',
+    name: 'Losepwd',
     hidden: true,
-    component: ()=>import('@/views/losepwd/index'),
+    component: () => import('@/views/losepwd/index'),
     meta: { title: 'losepwd' },
-    children:[{
-      path:"find",
-      name:"Find",
-      component:()=>import('@/views/losepwd/find/index'),
-      
+    children: [{
+      path: 'find',
+      name: 'Find',
+      component: () => import('@/views/losepwd/find/index')
+
     }]
   },
 
@@ -50,7 +49,7 @@ const routerMap = [
     children: [
       {
         path: '/home',
-        icon:'el-icon-location',
+        icon: 'el-icon-location',
         component: () => import('@/views/home/index'),
         name: 'Home',
         meta: { title: 'home', icon: 'dashboard' }
@@ -60,7 +59,7 @@ const routerMap = [
 
   {
     path: '/system',
-    icon:'el-icon-menu',
+    icon: 'el-icon-menu',
     component: Layout,
     redirect: 'noredirect',
     name: 'SystemPages',
@@ -88,16 +87,16 @@ const routerMap = [
         meta: { title: 'pagePermission' }
       },
       {
-        path:'setting',
+        path: 'setting',
         component: () => import('@/views/system/setting'),
-        name:'pageSetting',
+        name: 'pageSetting',
         meta: { title: 'pageSetting' }
       }
     ]
   },
   {
     path: '/error',
-    icon:'el-icon-menu',
+    icon: 'el-icon-menu',
     component: Layout,
     redirect: 'noredirect',
     name: 'ErrorPages',
@@ -122,42 +121,36 @@ const routerMap = [
   }
 ]
 
-
-
 const router = new Router({
-  //mode: 'history', // require service support
+  // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: routerMap
 })
-//路由导航守卫
-router.beforeEach((to,from,next)=>{
-  console.log(store)
-  if(to.fullPath=="/losepwd/find"){
-    next();
-    return;
+// 路由导航守卫
+router.beforeEach((to, from, next) => {
+  if (to.fullPath === '/losepwd/find') {
+    next()
+    return
   }
-  //用户点击到返回的时候清除cookies 防止点击返回再次进入到home
-  if(to.fullPath=='/login'){
-    Cookies.remove('username');
-    
+  // 用户点击到返回的时候清除cookies 防止点击返回再次进入到home
+  if (to.fullPath === '/login') {
+    Cookies.remove('username')
   }
-  if(to.fullPath!='/login' && !Cookies.get('username')){
-    next('/login');
-    return;
+  if (to.fullPath !== '/login' && !Cookies.get('username')) {
+    next('/login')
+    return
   }
 
-  if(to.matched.length === 0){
-    router.back();
-  }
-  else{
-    NProgress.start(); 
-    next();
+  if (to.matched.length === 0) {
+    router.back()
+  } else {
+    NProgress.start()
+    next()
   }
 })
-router.afterEach((to,from,next)=>{
-  NProgress.done();
+router.afterEach((to, from, next) => {
+  NProgress.done()
 })
-
 
 export default router
 export { routerMap }

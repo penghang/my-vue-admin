@@ -22,17 +22,14 @@ export default {
       if (typeof val !== 'string') return
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
       const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
-      console.log(themeCluster, originalCluster)
       const getHandler = (variable, id) => {
         return () => {
           const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
           const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)
-
           let styleTag = document.getElementById(id)
           if (!styleTag) {
             styleTag = document.createElement('style')
-            styleTag.setAttribute('id', id);
-            console.log(styleTag);
+            styleTag.setAttribute('id', id)
             document.head.appendChild(styleTag)
           }
           styleTag.innerText = newStyle
@@ -73,7 +70,6 @@ export default {
       })
       return newStyle
     },
-
     getCSSString(url, callback, variable) {
       const xhr = new XMLHttpRequest()
       xhr.onreadystatechange = () => {
@@ -106,7 +102,6 @@ export default {
           return `#${red}${green}${blue}`
         }
       }
-
       const shadeColor = (color, shade) => {
         let red = parseInt(color.slice(0, 2), 16)
         let green = parseInt(color.slice(2, 4), 16)
@@ -115,14 +110,11 @@ export default {
         red = Math.round((1 - shade) * red)
         green = Math.round((1 - shade) * green)
         blue = Math.round((1 - shade) * blue)
-
         red = red.toString(16)
         green = green.toString(16)
         blue = blue.toString(16)
-
         return `#${red}${green}${blue}`
       }
-
       const clusters = [theme]
       for (let i = 0; i <= 9; i++) {
         clusters.push(tintColor(theme, Number((i / 10).toFixed(2))))
@@ -133,12 +125,10 @@ export default {
   }
 }
 </script>
-
 <style>
 .theme-picker .el-color-picker__trigger {
   vertical-align: middle;
 }
-
 .theme-picker-dropdown .el-color-dropdown__link-btn {
   display: none;
 }

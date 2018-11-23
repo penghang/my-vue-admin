@@ -5,17 +5,17 @@
       <i class="logo">logo</i>
       <hamburger :toggle-click="toggleSideBar" :is-active="!sidebarCollapse" class="hamburger-container"/>
       <breadcrumb class="breadcrumb-container"/>
-      
-      <div style="flex:1"></div>
+
+      <div style="flex:1"/>
       <headersetting />
       <themePicker />
     </div>
     <!-- 布局 -->
     <div class="app-content">
-   
+
       <sidebar class="app-sidebar clearfix" />
       <div class="app-main-wrapper">
-          <tags-view/>
+        <tags-view/>
         <app-main/>
       </div>
     </div>
@@ -26,7 +26,7 @@
 import { Sidebar, AppMain, TagsView } from './components'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
-import Headersetting from "@/components/HeaderSetting"
+import Headersetting from '@/components/HeaderSetting'
 import themePicker from '@/components/themePicker'
 export default {
   name: 'Layout',
@@ -136,8 +136,6 @@ $sidebar_collapse_width: 65px;
       height: 100%;
     }
   }
-
-   
 
 }
 .app-wrapper.collapse {

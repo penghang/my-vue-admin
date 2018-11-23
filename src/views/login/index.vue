@@ -35,7 +35,7 @@
         </el-form-item>
         <div class="lose-pwd">
           <span @click="losePwd">忘记密码?</span>
-        </div>  
+        </div>
         <el-button :loading="loading" type="primary" @click.native.prevent="login('loginForm')">{{ $t('login.logIn') }}</el-button>
       </div>
     </el-form>
@@ -85,7 +85,7 @@ export default {
   watch: {
     $route: {
       handler: route => {
-        console.log(route);
+        console.log(route)
       //  this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -100,15 +100,13 @@ export default {
       }
     },
     login(formName) {
-     
       this.$refs[formName].validate((valid) => {
-        console.log(valid);
         if (valid) {
-          this.loading = true;
+          this.loading = true
           this.$store.dispatch('login', this.loginForm).then((obj) => {
             this.loading = false
-            Cookies.set("username",obj.username);
-            this.$router.push({path:'/home'})
+            Cookies.set('username', obj.username)
+            this.$router.push({ path: '/home' })
           }).catch(() => {
             this.loading = false
           })
@@ -118,13 +116,12 @@ export default {
         }
       })
     },
-    losePwd(){
-      this.$router.push({path:"/losepwd/find"});
+    losePwd() {
+      this.$router.push({ path: '/losepwd/find' })
     }
   }
 }
 </script>
-
 <style rel="stylesheet/scss" lang="scss">
   $bg:#2d3a4b;
   $dark_gray:#889aa4;

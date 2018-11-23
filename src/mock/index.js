@@ -16,7 +16,7 @@ Mock.mock(/user\/info/, 'get', loginApi.getUserInfo)
 Mock.mock(/user\/list/, 'get', userApi.userList)
 // 角色管理
 Mock.mock(/role\/list/, 'get', roleApi.roleList)
-//设置相关
-Mock.mock(/user\/getSettingInfo/,'get',settingApi.getSettingInfo)
+// 设置相关
+Mock.mock(/user\/getSettingInfo/, 'get', settingApi.getSettingInfo)
 
 export default Mock

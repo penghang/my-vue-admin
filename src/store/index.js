@@ -16,7 +16,6 @@ const store = new Vuex.Store({
     tagsView,
     theme
   },
-  
   getters: {
     sidebarCollapse: state => state.app.sidebarCollapse,
     language: state => state.app.language,

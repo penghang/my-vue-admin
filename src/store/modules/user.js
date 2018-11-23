@@ -8,16 +8,14 @@ const user = {
   },
   mutations: {
     setUser: (state, { username, token }) => {
-      console.log( username, token);
       state.token = token
       state.username = username
     },
     setToken: (state, token) => {
-     // console.log(token);
       state.token = token
     },
     logout: (state) => {
-      state.token = '';
+      state.token = ''
       state.username = ''
     }
   },
@@ -25,25 +23,22 @@ const user = {
     login({ commit }, { username, password }) {
       const name = username.trim()
       return new Promise((resolve, reject) => {
-
         setName(name)
         login(name, password).then(response => {
-          const data = response.data;
-          console.log(response);
+          const data = response.data
           commit('setToken', data.token)
           setToken(data.token)
-          resolve({username,password})
+          resolve({ username, password })
         }).catch(error => {
           reject(error)
         })
       })
     },
-    loginOut({commit}){
-      return new Promise((resolve,reject) => {
-        commit('logout');
+    loginOut({ commit }) {
+      return new Promise((resolve, reject) => {
+        commit('logout')
         resolve()
       })
-      
     }
   }
 }

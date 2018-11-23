@@ -1,10 +1,10 @@
 <template>
   <div v-if="!item.hidden&&item.children" class="menu-wrapper">
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
-      
+
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-          <i class="el-icon-location"></i>
+          <i class="el-icon-location"/>
           <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon||item.meta.icon" :title="generateTitle(onlyOneChild.meta.title)" />
         </el-menu-item>
       </app-link>
@@ -12,7 +12,7 @@
 
     <el-submenu v-else ref="submenu" :index="resolvePath(item.path)">
       <template slot="title">
-        <i :class="item.icon"></i>
+        <i :class="item.icon"/>
         <item v-if="item.meta" :icon="item.meta.icon" :title="generateTitle(item.meta.title)" />
       </template>
 
@@ -65,7 +65,7 @@ export default {
       onlyOneChild: null
     }
   },
-  created(){
+  created() {
     console.log()
   },
   methods: {

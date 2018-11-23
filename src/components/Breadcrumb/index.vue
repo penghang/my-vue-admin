@@ -51,6 +51,5 @@ export default {
     .el-breadcrumb__item{
       line-height: 60px;
     }
-    
   }
 </style>
