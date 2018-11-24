@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["/eX4"],{"/eX4":function(e,n,t){"use strict";t.r(n);var i={name:"Page404"},s=t("KHd+"),l=Object(s.a)(i,function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("404")])},[],!1,null,null,null);l.options.__file="404.vue";n.default=l.exports}}]);
