@@ -125,6 +125,7 @@ export function export_table_to_excel(id) {
     type: 'binary'
   })
 
+  // eslint-disable-next-line no-undef
   saveAs(new Blob([s2ab(wbout)], {
     type: 'application/octet-stream'
   }), 'test.xlsx')
@@ -181,6 +182,7 @@ export function export_json_to_excel({
     bookSST: false,
     type: 'binary'
   })
+  // eslint-disable-next-line no-undef
   saveAs(new Blob([s2ab(wbout)], {
     type: 'application/octet-stream'
   }), `${filename}.${bookType}`)
