@@ -70,7 +70,8 @@ module.exports = {
         exclude: [resolve('src/icons')],
         options: {
           limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+          publicPath: '../../'
         }
       },
       {
