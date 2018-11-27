@@ -7,56 +7,91 @@ import Cookies from 'js-cookie'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 Vue.use(Router)
+// 登录路由
+const loginRoute = [{
+  path: '/login',
+  name: 'Login',
+  component: () => import('@/views/login/index'),
+  // component:Login,
+  meta: { title: 'login' },
+  hidden: true
+}]
 
-const routerMap = [
+// 找回密码路由
+const losepwdRoute = [{
+  path: '/losepwd',
+  name: 'Losepwd',
+  hidden: true,
+  component: () => import('@/views/losepwd/index'),
+  meta: { title: 'losepwd' },
+  children: [{
+    path: 'find',
+    name: 'Find',
+    component: () => import('@/views/losepwd/find/index')
+
+  }]
+}]
+
+// 首页路由
+const homeRoute = [{
+  path: '/',
+  component: Layout,
+  hidden: true,
+  redirect: 'home',
+  children: [
+    {
+      path: '/home',
+      icon: 'el-icon-location',
+      component: () => import('@/views/home/index'),
+      name: 'Home',
+      meta: { title: 'home', icon: 'dashboard' }
+    }
+  ]
+}]
+
+// 重定向路由
+const redirectRoute = [{
+  path: '/redirect',
+  component: Layout,
+  hidden: true,
+  children: [
+    {
+      path: '/redirect/:path*',
+      component: () => import('@/views/redirect/index')
+    }
+  ]
+}]
+// 错误页面路由
+const errorRoute = [
   {
-    path: '/redirect',
+    path: '/error',
+    icon: 'el-icon-menu',
     component: Layout,
-    hidden: true,
+    redirect: 'noredirect',
+    name: 'ErrorPages',
+    meta: {
+      title: 'errorPages',
+      icon: '404'
+    },
     children: [
       {
-        path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/login/index'),
-    // component:Login,
-    meta: { title: 'login' },
-    hidden: true
-  },
-  {
-    path: '/losepwd',
-    name: 'Losepwd',
-    hidden: true,
-    component: () => import('@/views/losepwd/index'),
-    meta: { title: 'losepwd' },
-    children: [{
-      path: 'find',
-      name: 'Find',
-      component: () => import('@/views/losepwd/find/index')
-
-    }]
-  },
-
-  {
-    path: '/',
-    component: Layout,
-    redirect: 'home',
-    children: [
+        path: '401',
+        component: () => import('@/views/errorPage/401'),
+        name: 'page401',
+        meta: { title: 'page401' }
+      },
       {
-        path: '/home',
-        icon: 'el-icon-location',
-        component: () => import('@/views/home/index'),
-        name: 'Home',
-        meta: { title: 'home', icon: 'dashboard' }
+        path: '404',
+        component: () => import('@/views/errorPage/404'),
+        name: 'page404',
+        meta: { title: 'page404' }
       }
     ]
-  },
+  }
+]
 
+// 页面导航路由
+const otherRoute = [
   {
     path: '/system',
     icon: 'el-icon-menu',
@@ -93,32 +128,16 @@ const routerMap = [
         meta: { title: 'pageSetting' }
       }
     ]
-  },
-  {
-    path: '/error',
-    icon: 'el-icon-menu',
-    component: Layout,
-    redirect: 'noredirect',
-    name: 'ErrorPages',
-    meta: {
-      title: 'errorPages',
-      icon: '404'
-    },
-    children: [
-      {
-        path: '401',
-        component: () => import('@/views/errorPage/401'),
-        name: 'page401',
-        meta: { title: 'page401' }
-      },
-      {
-        path: '404',
-        component: () => import('@/views/errorPage/404'),
-        name: 'page404',
-        meta: { title: 'page404' }
-      }
-    ]
   }
+]
+
+const routerMap = [
+  ...loginRoute,
+  ...redirectRoute,
+  ...otherRoute,
+  ...losepwdRoute,
+  ...homeRoute,
+  ...errorRoute
 ]
 
 const router = new Router({
