@@ -45,7 +45,7 @@
 <script>
 import { validUsername, validPassword } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 export default {
   name: 'Login',
   components: { LangSelect },
@@ -84,9 +84,8 @@ export default {
   },
   watch: {
     $route: {
-      handler: route => {
-        console.log(route)
-      //  this.redirect = route.query && route.query.redirect
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
       },
       immediate: true
     }
@@ -105,8 +104,10 @@ export default {
           this.loading = true
           this.$store.dispatch('login', this.loginForm).then((obj) => {
             this.loading = false
-            Cookies.set('username', obj.username)
-            this.$router.push({ path: '/home' })
+            // Cookies.set('username', obj.username)
+            this.$router.push({ name: 'Home' })
+            // 更换用户时之前的路由可能变得无权限
+            // this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
             this.loading = false
           })
@@ -117,7 +118,7 @@ export default {
       })
     },
     losePwd() {
-      this.$router.push({ path: '/losepwd/find' })
+      this.$router.push({ path: '/losepwd' })
     }
   }
 }

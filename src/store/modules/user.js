@@ -1,42 +1,68 @@
-import { login } from '@/api/login'
-import { setName, setToken } from '@/utils/lfStore'
+import { login, getUserInfo, logout } from '@/api/login'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
+    token: getToken(),
+    userid: '',
     username: '',
-    token: ''
+    name: '',
+    roles: []
   },
   mutations: {
-    setUser: (state, { username, token }) => {
-      state.token = token
+    setUserName: (state, username) => {
       state.username = username
     },
     setToken: (state, token) => {
       state.token = token
     },
-    logout: (state) => {
-      state.token = ''
-      state.username = ''
+    setInfo: (state, { userid, username, name, roles }) => {
+      state.userid = userid
+      state.username = username
+      state.name = name
+      state.roles = roles
     }
   },
   actions: {
     login({ commit }, { username, password }) {
       const name = username.trim()
       return new Promise((resolve, reject) => {
-        setName(name)
-        login(name, password).then(response => {
-          const data = response.data
+        login(name, password).then(({ data }) => {
           commit('setToken', data.token)
           setToken(data.token)
-          resolve({ username, password })
+          resolve()
         }).catch(error => {
           reject(error)
         })
       })
     },
-    loginOut({ commit }) {
+    getUserInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        commit('logout')
+        getUserInfo().then(({ data }) => {
+          if (!data) {
+            reject('error')
+          }
+          commit('setInfo', data)
+          resolve(data)
+        })
+      })
+    },
+    logout({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        logout(state.token).then(() => {
+          commit('setToken', '')
+          commit('logout')
+          removeToken()
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    fedLogout({ commit }) {
+      return new Promise(resolve => {
+        commit('setToken', '')
+        removeToken()
         resolve()
       })
     }

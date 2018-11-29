@@ -4,7 +4,8 @@ export default {
     user: 'User Management',
     role: 'Role Management',
     system: 'System',
-    pageSetting: 'setting',
+    accountSetting: 'Account',
+
     introduction: 'Introduction',
     documentation: 'Documentation',
     guide: 'Guide',

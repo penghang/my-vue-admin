@@ -1,5 +1,6 @@
 import { param2Obj } from '@/utils'
 import { Random } from 'mockjs'
+import { success } from '@/mock/utils/result-util'
 
 const total = 100
 const roles = []
@@ -17,9 +18,9 @@ export default {
     const result = rolename ? roles.filter(row => {
       return row.rolename.indexOf(rolename) > -1
     }) : roles
-    return {
+    return success({
       total: result.length,
       list: result.slice((page - 1) * limit, page * limit)
-    }
+    })
   }
 }

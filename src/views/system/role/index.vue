@@ -67,9 +67,9 @@ export default {
   methods: {
     listLoad() {
       this.listLoading = true
-      roleList(this.listQuery).then(response => {
-        this.list = response.data.list
-        this.total = response.data.total
+      roleList(this.listQuery).then(({ data }) => {
+        this.list = data.list
+        this.total = data.total
         this.listLoading = false
       })
     },

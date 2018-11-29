@@ -1,4 +1,6 @@
 import Mock, { Random } from 'mockjs'
+import { success } from '@/mock/utils/result-util'
+
 const o = Mock.mock({
   'tel': /[1][34578][0-9]{9}/
 })
@@ -19,6 +21,6 @@ const dataList = [{
 }]
 export default {
   getSettingInfo: config => {
-    return dataList[0]
+    return success(dataList[0])
   }
 }

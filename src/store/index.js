@@ -21,8 +21,10 @@ const store = new Vuex.Store({
     language: state => state.app.language,
     token: state => state.user.token,
     permissionRouters: state => state.permission.routers,
+    addRouters: state => state.permission.addRouters,
     visitedViews: state => state.tagsView.visitedViews,
-    cachedViews: state => state.tagsView.cachedViews
+    cachedViews: state => state.tagsView.cachedViews,
+    roles: state => state.user.roles
   }
 })
 

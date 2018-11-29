@@ -263,10 +263,9 @@ export default {
     },
     listLoad() {
       this.listLoading = true
-      userList(this.listQuery).then(response => {
-        console.log(response)
-        this.list = response.data.list
-        this.total = response.data.total
+      userList(this.listQuery).then(({ data }) => {
+        this.list = data.list
+        this.total = data.total
         this.listLoading = false
       })
     },
@@ -279,7 +278,6 @@ export default {
       })
     },
     handleUpdate(row) {
-      console.log(row)
       this.dialogTableVisible = true
       this.isEidt = true
       // this.$message({

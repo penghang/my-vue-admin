@@ -1,4 +1,4 @@
-@import './transition.scss';
+@import './variables.scss';
 
 body {
   height: 100%;
@@ -77,3 +77,6 @@ a, a:hover, a:active {
 .el-form-item__label{
   font-weight: normal
 }
+
+@import './transition.scss';
+@import './layout.scss';

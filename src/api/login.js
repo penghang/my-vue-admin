@@ -17,11 +17,16 @@ function logout() {
     method: 'post'
   })
 }
-function getUserInfo(token) {
+function getUserInfo() {
   return request({
     url: 'user/info',
-    method: 'get',
-    params: { token }
+    method: 'get'
   })
 }
-export { login, logout, getUserInfo }
+function getRoutes() {
+  return request({
+    url: 'user/routes',
+    method: 'get'
+  })
+}
+export { login, logout, getUserInfo, getRoutes }

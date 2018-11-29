@@ -1,6 +1,7 @@
 function validUsername(str) {
-  const valid_map = ['admin', 'user1']
-  return valid_map.indexOf(str.trim()) >= 0
+  // const valid_map = ['admin', 'user1']
+  // return valid_map.indexOf(str.trim()) >= 0
+  return true
 }
 function validPassword(str) {
   var reg = new RegExp('^(?=.{8,18})(((?=.*[A-Z])(?=.*[a-z0-9\\W_]))|((?=.*[a-z])(?=.*[0-9\\W_]))|((?=.*[0-9])(?=.*[\\W_]))).*$', 'g')

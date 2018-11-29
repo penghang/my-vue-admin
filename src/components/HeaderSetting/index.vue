@@ -3,7 +3,7 @@
     <el-dropdown @command="clickDown">
       <span class="el-dropdown-link">
         <img class="user" src="../../assets/images/user-wxz.png" alt="">
-        <p>{{ userName }}</p>
+        <span>{{ userName }}</span>
       </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item command="1">个人中心</el-dropdown-item>
@@ -15,18 +15,17 @@
 
 </template>
 <script>
-import Cookies from 'js-cookie'
 export default {
   name: 'Headersetting',
   data() {
     return {
-      userName: this.$store.state.user.token || Cookies.get('username')
+      userName: this.$store.state.user.name
     }
   },
   computed: {
   },
   created() {
-    this.userName = this.$store.state.user.token || Cookies.get('username')
+    this.userName = this.$store.state.user.name
   },
   methods: {
     clickDown(e) {
@@ -35,14 +34,12 @@ export default {
 
           break
         case '2':
-          this.$router.push({ path: '/system/setting' })
+          this.$router.push({ name: 'accountSetting' })
           break
         case '3':// 退出登录
-          this.$store.dispatch('loginOut')
+          this.$store.dispatch('logout')
             .then(() => {
-              Cookies.remove('username')
-              this.$store.dispatch('delAllViews')
-              this.$router.replace({ path: '/login' })
+              location.reload()
             })
           break
         default:
@@ -55,22 +52,22 @@ export default {
 </script>
 <style lang="scss" scoped>
 *{
-    padding:0;
-    margin: 0;
+  padding:0;
+  margin: 0;
 }
 .user-setting{
-    height: 100%;
-    padding: 0 20px;
-    .el-dropdown-link{
-        cursor:pointer;
-        .user{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            vertical-align: middle;
-        }
-    }
-
+  float: left;
+  height: 100%;
+  padding: 0 20px;
+  .el-dropdown-link{
+      cursor:pointer;
+      .user{
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          vertical-align: middle;
+      }
+  }
 }
 
 </style>
