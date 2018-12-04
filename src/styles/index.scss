@@ -15,6 +15,7 @@ label {
 html {
   height: 100%;
   box-sizing: border-box;
+  background: $bg_color;
 }
 
 #app {
@@ -60,23 +61,13 @@ a, a:hover, a:active {
     margin-bottom: 10px;
   }
 }
-.el-tabs__item{
-  padding: 0 120px 0 30px !important;
-}
-.el-tabs__content{
-  border-left: .5px solid rgba(0,0,0,.2);
-  padding-left: 10px
-}
-.el-tabs--left .el-tabs__header.is-left{
-  margin-right: 0px !important;
-}
-
-.el-tab-pane{
-  padding-bottom: 30px
-}
 .el-form-item__label{
   font-weight: normal
 }
-
+// 取消tab的蓝色阴影
+.el-tabs__item:focus.is-active.is-focus:not(:active){
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 @import './transition.scss';
 @import './layout.scss';
