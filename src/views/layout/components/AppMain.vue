@@ -26,8 +26,8 @@ export default {
 
 <style scoped>
 .app-main {
-  /*94 = header + tags-view = 60 +34 */
-  min-height: calc(100vh - 94px);
+  /*101 = header + tags-view = 60 +41 */
+  min-height: calc(100vh - 101px);
   width: 100%;
   position: relative;
   overflow: hidden;

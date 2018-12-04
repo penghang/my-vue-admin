@@ -1,22 +1,21 @@
 <template>
   <div class="tags-view-container">
-    <scroll-pane ref="scrollPane" class="tags-view-wrapper">
-      <router-link
-        v-for="tag in visitedViews"
-        ref="tag"
-        :class="isActive(tag)?'active':''"
-        :to="tag.fullPath"
-        :key="tag.path"
-        tag="span"
-        class="tags-view-item"
-        @click.middle.native="closeSelectedTag(tag)"
-        @contextmenu.prevent.native="openMenu(tag,$event)">
-        {{ generateTitle(tag.title) }}
-        <span v-if="tag.name !== 'Home'" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
-      </router-link>
-    </scroll-pane>
+    <el-tabs
+      :value="current"
+      :closable="true"
+      class="multiple-page-control"
+      type="card"
+      @tab-click="handleClick"
+      @edit="handleTabsEdit"
+      @contextmenu.native="handleContextmenu">
+      <el-tab-pane
+        v-for="page in visitedViews"
+        :key="page.name"
+        :label="generateTitle(page.title)"
+        :name="page.name"/>
+    </el-tabs>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <template v-if="selectedTag.name !== 'home'">
+      <template v-if="selectedTag.name !== 'Home'">
         <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
         <li @click="closeSelectedTag(selectedTag)">{{ $t('tagsView.close') }}</li>
         <li @click="closeOthersTags(selectedTag)">{{ $t('tagsView.closeOthers') }}</li>
@@ -43,6 +42,9 @@ export default {
   computed: {
     visitedViews() {
       return this.$store.state.tagsView.visitedViews
+    },
+    current() {
+      return this.$route.name
     }
   },
   watch: {
@@ -75,21 +77,22 @@ export default {
       return false
     },
     moveToCurrentTag() {
-      const tags = this.$refs.tag
-      this.$nextTick(() => {
-        for (const tag of tags) {
-          if (tag.to.path === this.$route.path) {
-            this.$refs.scrollPane.moveToTarget(tag.$el)
+      // const tags = this.$refs.tag
+      // this.$nextTick(() => {
+      //   const tag = this.visitedViews.find(page => page.name === this.current)
+      //   for (const tag of tags) {
+      //     if (tag.to.path === this.$route.path) {
+      //       this.$refs.scrollPane.moveToTarget(tag.$el)
 
-            // when query is different then update
-            if (tag.to.fullPath !== this.$route.fullPath) {
-              this.$store.dispatch('updateVisitedView', this.$route)
-            }
+      //       // when query is different then update
+      //       if (tag.to.fullPath !== this.$route.fullPath) {
+      //         this.$store.dispatch('updateVisitedView', this.$route)
+      //       }
 
-            break
-          }
-        }
-      })
+      //       break
+      //     }
+      //   }
+      // })
     },
     refreshSelectedTag(view) {
       this.$store.dispatch('delCachedView', view).then(() => {
@@ -123,61 +126,70 @@ export default {
       this.$store.dispatch('delAllViews')
       this.$router.push('/')
     },
-    openMenu(tag, e) {
-      this.visible = true
-      this.selectedTag = tag
-      // const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
-      this.left = e.clientX + 15 // 15: margin right
-      this.top = e.clientY
+    handleContextmenu(event) {
+      let target = event.target
+      let flag = false
+      if (target.className.indexOf('el-tabs__item') > -1) flag = true
+      else if (target.parentNode.className.indexOf('el-tabs__item') > -1) {
+        target = target.parentNode
+        flag = true
+      }
+      if (flag) {
+        event.preventDefault()
+        event.stopPropagation()
+        this.visible = true
+        // this.selectedTag = tag
+        // const offsetLeft = this.$el.getBoundingClientRect().left // container margin left
+        this.left = event.clientX + 15 // 15: margin right
+        this.top = event.clientY
+        const tagName = target.getAttribute('aria-controls').slice(5)
+        this.selectedTag = this.visitedViews.find(page => page.name === tagName)
+      }
     },
     closeMenu() {
       this.visible = false
+    },
+    handleClick(tab) {
+      // 找到点击的页面在 tag 列表里是哪个
+      const page = this.visitedViews.find(page => page.name === tab.name)
+      if (page) {
+        const { name } = page
+        this.$router.push({ name })
+      }
+    },
+    /**
+     * @description 点击 tab 上的删除按钮触发这里 首页的删除按钮已经隐藏 因此这里不用判断是 index
+     */
+    handleTabsEdit(tagName, action) {
+      if (action === 'remove') {
+        this.closeSelectedTag(this.visitedViews.find(page => page.name === tagName))
+      }
     }
   }
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
+$bd_color: #cfd7e5;
 .tags-view-container {
-  height: 34px;
+  height: 41px;
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #d8dce5;
-  // box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
-  .tags-view-wrapper {
-    .tags-view-item {
-      display: inline-block;
-      position: relative;
-      cursor: pointer;
-      height: 26px;
-      line-height: 26px;
-      border: 1px solid #d8dce5;
-      color: #495060;
-      background: #fff;
-      padding: 0 8px;
-      font-size: 12px;
-      margin-left: 5px;
-      margin-top: 4px;
-      &:first-of-type {
-        margin-left: 15px;
-      }
-      &:last-of-type {
-        margin-right: 15px;
-      }
-      &.active {
-        background-color: #42b983;
-        color: #fff;
-        border-color: #42b983;
-        &::before {
-          content: '';
-          background: #fff;
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          position: relative;
-          margin-right: 2px;
-        }
+  .el-tabs--card>.el-tabs__header {
+    border-bottom-color: $bd_color;
+  }
+  .el-tabs--card>.el-tabs__header .el-tabs__nav {
+    border: 1px solid $bd_color;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    .el-tabs__item {
+      background-color: rgba(0,0,0,.03);
+      border-left-color: $bd_color;
+      color: #606266;
+      &.is-active {
+        background-color: #fff;
+        border-bottom-color: #fff;
+        color: #2f74ff;
       }
     }
   }
@@ -192,39 +204,13 @@ export default {
     font-size: 12px;
     font-weight: 400;
     color: #333;
-    // box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
     li {
       margin: 0;
       padding: 7px 16px;
       cursor: pointer;
       &:hover {
         background: #eee;
-      }
-    }
-  }
-}
-</style>
-
-<style rel="stylesheet/scss" lang="scss">
-//reset element css of el-icon-close
-.tags-view-wrapper {
-  .tags-view-item {
-    .el-icon-close {
-      width: 16px;
-      height: 16px;
-      vertical-align: 2px;
-      border-radius: 50%;
-      text-align: center;
-      transition: all .3s cubic-bezier(.645, .045, .355, 1);
-      transform-origin: 100% 50%;
-      &:before {
-        transform: scale(.6);
-        display: inline-block;
-        vertical-align: -3px;
-      }
-      &:hover {
-        background-color: #b4bccc;
-        color: #fff;
       }
     }
   }
