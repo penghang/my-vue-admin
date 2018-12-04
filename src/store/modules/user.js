@@ -44,6 +44,8 @@ const user = {
           }
           commit('setInfo', data)
           resolve(data)
+        }).catch(() => {
+          reject('error')
         })
       })
     },

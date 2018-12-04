@@ -9,7 +9,11 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/': {
+        target: 'http://10.9.20.90:8099'
+      }
+    },
 
     // Various Dev Server settings
 
