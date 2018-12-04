@@ -2,7 +2,6 @@
   <div class="tags-view-container">
     <el-tabs
       :value="current"
-      :closable="true"
       class="multiple-page-control"
       type="card"
       @tab-click="handleClick"
@@ -11,6 +10,7 @@
       <el-tab-pane
         v-for="page in visitedViews"
         :key="page.name"
+        :closable="page.name!=='Home'"
         :label="generateTitle(page.title)"
         :name="page.name"/>
     </el-tabs>
