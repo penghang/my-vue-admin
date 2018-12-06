@@ -69,12 +69,15 @@ export default {
     externalLink: '外链'
   },
   navbar: {
+    theme: '主题',
+    medium: '中',
+    small: '小',
+    mini: '最小',
     logOut: '退出登录',
-    dashboard: '首页',
-    github: '项目地址',
-    screenfull: '全屏',
-    theme: '换肤',
-    size: '布局大小'
+    accountCenter: '个人中心',
+    accountSetting: '个人设置',
+
+    screenfull: '全屏'
   },
   login: {
     title: '系统登录',

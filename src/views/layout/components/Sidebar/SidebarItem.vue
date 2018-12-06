@@ -63,9 +63,6 @@ export default {
       onlyOneChild: null
     }
   },
-  created() {
-    console.log()
-  },
   methods: {
     hasOneShowingChild(children, parent) {
       const showingChildren = children.filter(item => {

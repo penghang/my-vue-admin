@@ -2,12 +2,16 @@
   <div :class="classObj" class="app-wrapper">
     <!-- 头部 -->
     <div class="app-header">
-      <i class="logo">logo</i>
-      <hamburger :toggle-click="toggleSideBar" :is-active="!sidebarCollapse" class="hamburger-container"/>
-      <breadcrumb class="breadcrumb-container"/>
+      <div class="app-header-left">
+        <i class="logo">logo</i>
+        <hamburger />
+        <breadcrumb />
+      </div>
       <div class="app-header-right">
         <headersetting />
-        <themePicker />
+        <theme />
+        <size />
+        <lang-select class="set-language" />
       </div>
     </div>
     <!-- 布局 -->
@@ -27,17 +31,21 @@ import { Sidebar, AppMain, TagsView } from './components'
 import Hamburger from '@/components/Hamburger'
 import Breadcrumb from '@/components/Breadcrumb'
 import Headersetting from '@/components/HeaderSetting'
-import themePicker from '@/components/themePicker'
+import Theme from '@/components/Theme'
+import Size from '@/components/Size'
+import LangSelect from '@/components/LangSelect'
 export default {
   name: 'Layout',
   components: {
     Hamburger,
     Breadcrumb,
     Headersetting,
-    themePicker,
+    Theme,
+    Size,
     Sidebar,
     AppMain,
-    TagsView
+    TagsView,
+    LangSelect
   },
   data() {
     return {
@@ -58,11 +66,10 @@ export default {
         'search-active': this.searchActive
       }
     }
-  },
-  methods: {
-    toggleSideBar() {
-      this.$store.commit('toggleSideBar')
-    }
   }
 }
 </script>
+<style lang="scss">
+// 注册主题
+@import '@/styles/theme/register.scss';
+</style>

@@ -124,14 +124,12 @@ export default {
 }
 </script>
 <style rel="stylesheet/scss" lang="scss">
-  $bg:#2d3a4b;
   $dark_gray:#889aa4;
   $light_gray:#515a6e;
-  $cursor: #fff;
   $form_padding: 20px;
 
   .login-con {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
     background-color: #00070f;
@@ -174,8 +172,12 @@ export default {
       .set-language {
         position: absolute;
         color: $light_gray;
-        top: 20px;
+        top: 10px;
         right: $form_padding;
+        .el-button--text {
+          font-size: 20px;
+          color: #000;
+        }
       }
     }
     .login-con-input {

@@ -65,8 +65,8 @@ const tagsView = {
     delAllVisitedViews: state => {
       state.visitedViews = [defaultView]
     },
-    delAllCachedViews: state => {
-      state.cachedViews = [defaultView.name]
+    delAllCachedViews: (state, delDefault) => {
+      state.cachedViews = delDefault ? [] : [defaultView.name]
     },
 
     updateVisitedView: (state, view) => {
@@ -137,7 +137,7 @@ const tagsView = {
     delAllViews({ commit, state }, view) {
       return new Promise(resolve => {
         commit('delAllVisitedViews', view)
-        commit('delAllCachedViews', view)
+        commit('delAllCachedViews')
         resolve({
           visitedViews: [...state.visitedViews],
           cachedViews: [...state.cachedViews]
@@ -150,9 +150,9 @@ const tagsView = {
         resolve([...state.visitedViews])
       })
     },
-    delAllCachedViews({ commit, state }) {
+    delAllCachedViews({ commit, state }, delDefault) {
       return new Promise(resolve => {
-        commit('delAllCachedViews')
+        commit('delAllCachedViews', delDefault)
         resolve([...state.cachedViews])
       })
     },

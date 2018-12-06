@@ -19,7 +19,11 @@ const store = new Vuex.Store({
   getters: {
     sidebarCollapse: state => state.app.sidebarCollapse,
     language: state => state.app.language,
+    size: state => state.app.size,
+
     token: state => state.user.token,
+    userid: state => state.user.userid,
+
     permissionRouters: state => state.permission.routers,
     addRouters: state => state.permission.addRouters,
     visitedViews: state => state.tagsView.visitedViews,
@@ -27,5 +31,4 @@ const store = new Vuex.Store({
     roles: state => state.user.roles
   }
 })
-
 export default store

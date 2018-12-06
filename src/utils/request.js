@@ -25,7 +25,6 @@ service.interceptors.response.use(
   // response => response,
   response => {
     const { code, msg } = response.data
-    console.log(code, msg)
     if (code !== 0) {
       Message({
         message: msg,

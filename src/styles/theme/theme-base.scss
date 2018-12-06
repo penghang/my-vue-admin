@@ -1,0 +1,135 @@
+.app-wrapper {
+  height: 100%;
+  padding-top: $header_height;
+  .app-bg-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .app-header {
+    height: $header_height;
+    margin-top: -$header_height;
+    line-height: $header_height;
+
+    .app-header-left {
+      display: inline-block;
+      height: 100%;
+      .logo {
+        display: inline-block;
+        height: 100%;
+        width: $sidebar_width;
+        background: url(../../assets/logo.png) no-repeat center;
+        background-size: contain;
+        text-indent: -9999px;
+      }
+
+      .btn-icon {
+        font-size: 20px;
+      }
+
+      .el-breadcrumb {
+        float: right;
+      }
+    }
+    .app-header-right {
+      float: right;
+      .btn-icon {
+        font-size: 20px;
+        border-radius: 4px;
+        margin: 0!important;
+        padding: 14px 12px;
+      }
+    }
+  }
+  .app-content {
+    height: 100%;
+    padding-left: $sidebar_width;
+
+    .app-sidebar {
+      position: absolute;
+      top: $header_height;
+      left: 0;
+      bottom: 0;
+      width: $sidebar_width;
+    }
+
+    .app-main-wrapper {
+      height: 100%;
+    }
+  }
+  
+  &.collapse {
+    .app-header {
+      .logo {
+        width: $sidebar_collapse_width
+      }
+    }
+
+    .app-content{
+      padding-left: $sidebar_collapse_width;
+      .app-nav {
+        width: $sidebar_collapse_width;
+        margin-left: -$sidebar_collapse_width;
+      }
+    }
+  }
+  
+  .el-menu {
+    background: transparent;
+  }
+}
+.animation {
+  .app-header {
+    .logo {
+      transition: width .35s ease-out;
+    }
+  }
+
+  .app-content {
+    transition: padding-left .35s ease-out;
+    .app-nav {
+      transition: width .35s ease-out, margin-left .35s ease-out;
+    }
+  }
+}
+
+
+.app-left-menu {
+  border-right-width: 0px!important;
+  &.el-menu--collapse {
+    .menu-wrapper{
+      .el-menu-item span,
+      .el-submenu>.el-submenu__title span {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        display: inline-block;
+      }
+
+      .el-submenu>.el-submenu__title .el-submenu__icon-arrow {
+        display: none;
+      }
+    }
+  }
+}
+
+.scrollbar-wrapper {
+  overflow-x: hidden!important;
+  .el-scrollbar__view {
+    height: 100%;
+  }
+}
+.el-scrollbar__bar.is-vertical{
+  right: 0px;
+}
+
+.theme-preview {
+  height: 50px;
+  width: 100px;
+  border-radius: 4px;
+  background-size: cover;
+  border: 1px solid $color-border-1;
+}

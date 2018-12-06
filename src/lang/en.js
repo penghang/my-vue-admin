@@ -69,12 +69,15 @@ export default {
     externalLink: 'External Link'
   },
   navbar: {
-    logOut: 'Log Out',
-    dashboard: 'Dashboard',
-    github: 'Github',
-    screenfull: 'Screenfull',
     theme: 'Theme',
-    size: 'Global Size'
+    medium: 'medium',
+    small: 'small',
+    mini: 'mini',
+    logOut: 'Log Out',
+    accountCenter: 'Account Center',
+    accountSetting: 'Account Setting',
+
+    screenfull: 'Screenfull'
   },
   login: {
     title: 'Login Form',

@@ -15,8 +15,8 @@
         :name="page.name"/>
     </el-tabs>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
+      <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
       <template v-if="selectedTag.name !== 'Home'">
-        <li @click="refreshSelectedTag(selectedTag)">{{ $t('tagsView.refresh') }}</li>
         <li @click="closeSelectedTag(selectedTag)">{{ $t('tagsView.close') }}</li>
         <li @click="closeOthersTags(selectedTag)">{{ $t('tagsView.closeOthers') }}</li>
       </template>
@@ -26,11 +26,9 @@
 </template>
 
 <script>
-import ScrollPane from '@/components/ScrollPane'
 import { generateTitle } from '@/utils/i18n'
 
 export default {
-  components: { ScrollPane },
   data() {
     return {
       visible: false,
@@ -174,24 +172,12 @@ $bd_color: #cfd7e5;
 .tags-view-container {
   height: 41px;
   width: 100%;
-  .el-tabs--card>.el-tabs__header {
-    border-bottom-color: $bd_color;
-  }
   .el-tabs--card>.el-tabs__header .el-tabs__nav {
-    border: 1px solid $bd_color;
+    border-width: 1px;
+    border-style: solid;
     border-bottom: none;
     border-radius: 4px 4px 0 0;
     overflow: hidden;
-    .el-tabs__item {
-      background-color: rgba(0,0,0,.03);
-      border-left-color: $bd_color;
-      color: #606266;
-      &.is-active {
-        background-color: #fff;
-        border-bottom-color: #fff;
-        color: #2f74ff;
-      }
-    }
   }
   .contextmenu {
     margin: 0;

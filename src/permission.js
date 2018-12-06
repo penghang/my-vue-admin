@@ -28,8 +28,13 @@ router.beforeEach((to, from, next) => {
       window.r = router
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         store.dispatch('getUserInfo').then(() => { // 拉取user_info
+          // 按照用户习惯加载配置
+          const p1 = store.dispatch('app/load')
           // 动态拉取路由表
-          store.dispatch('generateRoutes').then(() => {
+          const p2 = store.dispatch('generateRoutes')
+          Promise.all([p1, p2]).then(() => {
+            router.app.$ELEMENT.size = store.state.app.size
+            router.app.$i18n.locale = store.state.app.language
             router.addRoutes(store.getters.addRouters)
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })

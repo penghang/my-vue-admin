@@ -1,0 +1,36 @@
+// 主题名称
+$theme-name: 'tomorrow-night-blue';
+// 主题背景颜色
+$theme-bg-color: #002253;
+// 主题背景图
+$theme-bg-has-image: false;
+
+// tab标签页
+$theme-multiple-page-control-color: #FFF;
+$theme-multiple-page-control-color-active: $color-text-normal;
+$theme-multiple-page-control-nav-prev-color: #FFF;
+$theme-multiple-page-control-nav-next-color: #FFF;
+$theme-multiple-page-control-border-color: #002253;
+$theme-multiple-page-control-border-color-active: #FFF;
+$theme-multiple-page-control-background-color: rgba(#FFF, .2);
+$theme-multiple-page-control-background-color-active: #FFF;
+
+// 顶栏上的文字颜色
+$theme-header-item-color: #FF929A;
+$theme-header-item-background-color: transparent;
+// 顶栏上的项目在 hover 时
+$theme-header-item-color-hover: #FFEBA4;
+$theme-header-item-background-color-hover: rgba(#FFF, .05);
+
+// 侧边栏上的文字颜色
+$theme-aside-item-color: #FF929A;
+$theme-aside-item-background-color: transparent;
+// 侧边栏上的项目在 hover 时
+$theme-aside-item-color-hover: #FFEBA4;
+$theme-aside-item-background-color-hover: rgba(#FFF, .05);
+// 侧边栏上的项目在 focus 时
+$theme-aside-item-color-focus: #FFB870;
+$theme-aside-item-background-color-focus: rgba(#FFF, .05);
+// 侧边栏上的项目在 active 时
+$theme-aside-item-color-active: #FFB870;
+$theme-aside-item-background-color-active: rgba(#FFF, .05);

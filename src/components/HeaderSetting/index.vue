@@ -1,14 +1,14 @@
 <template>
   <div class="user-setting">
-    <el-dropdown @command="clickDown">
+    <el-dropdown size="medium" @command="clickDown">
       <span class="el-dropdown-link">
         <img class="user" src="../../assets/images/user-wxz.png" alt="">
         <span>{{ userName }}</span>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="1">个人中心</el-dropdown-item>
-        <el-dropdown-item command="2">个人设置</el-dropdown-item>
-        <el-dropdown-item command="3">退出登录</el-dropdown-item>
+        <el-dropdown-item command="1">{{ $t('navbar.accountCenter') }}</el-dropdown-item>
+        <el-dropdown-item command="2">{{ $t('navbar.accountSetting') }}</el-dropdown-item>
+        <el-dropdown-item command="3">{{ $t('navbar.logOut') }}</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
@@ -51,14 +51,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-*{
-  padding:0;
-  margin: 0;
-}
 .user-setting{
-  float: left;
-  height: 100%;
-  padding: 0 20px;
+  display: inline-block;
   .el-dropdown-link{
       cursor:pointer;
       .user{

@@ -1,0 +1,160 @@
+// 每个主题特有的设置
+.theme-#{$theme-name} {
+  background-color: $theme-bg-color;
+  @if $theme-bg-has-image {
+    background-image: url(../../assets/images/theme/#{$theme-name}/bg.jpg);
+    background-position: 50% top;
+    background-size: cover;
+  }
+  // 顶栏
+  .app-header {
+    .btn-icon,
+    .el-dropdown,
+    .el-breadcrumb__inner,
+    .el-breadcrumb__separator,
+    .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+      color: $theme-header-item-color;
+    }
+    
+    // 顶栏右侧
+    .app-header-right {
+      .btn-icon {
+        color: $theme-header-item-color;
+        &:hover {
+          color: $theme-header-item-color-hover;
+          background: $theme-header-item-background-color-hover;
+        }
+      }
+    }
+  }
+
+
+  %el-menu-icon {
+    i {
+      display: inline-block;
+      width: 14px;
+      text-align: center;
+      margin-right: 5px;
+    }
+    svg {
+      margin: 0px;
+      height: 14px;
+      width: 14px;
+      margin-right: 5px;
+    }
+  }
+  .el-submenu__title {
+    @extend %unable-select;
+    @extend %el-menu-icon;
+  }
+  .el-menu-item {
+    @extend %unable-select;
+    @extend %el-menu-icon;
+  }
+  
+  // [菜单] 正常状态
+  .app-sidebar {
+    .el-menu {
+      .el-menu-item {
+        color: $theme-aside-item-color;
+        background: $theme-aside-item-background-color;
+        i {
+          color: $theme-aside-item-color;
+        }
+        &:hover {
+          color: $theme-aside-item-color-hover;
+          background: $theme-aside-item-background-color-hover;
+          i {
+            color: $theme-aside-item-color-hover;
+          }
+        }
+        &:focus {
+          color: $theme-aside-item-color-focus;
+          background: $theme-aside-item-background-color-focus;
+          i {
+            color: $theme-aside-item-color-focus;
+          }
+        }
+        &.is-active {
+          color: $theme-aside-item-color-active;
+          background: $theme-aside-item-background-color-active;
+          i {
+            color: $theme-aside-item-color-active;
+          }
+        }
+      }
+    }
+    .el-submenu {
+      .el-submenu__title {
+        color: $theme-aside-item-color;
+        background: $theme-aside-item-background-color;
+        i {
+          color: $theme-aside-item-color;
+        }
+        .el-submenu__icon-arrow {
+          color: $theme-aside-item-color;
+        }
+        &:hover {
+          color: $theme-aside-item-color-hover;
+          background: $theme-aside-item-background-color-hover;
+          i {
+            color: $theme-aside-item-color-hover;
+          }
+          .el-submenu__icon-arrow {
+            color: $theme-aside-item-color-hover;
+          }
+        }
+      }
+    }
+  }
+
+  .app-main-wrapper {
+    .tags-view-container{
+      .el-tabs__header.is-top {
+        border-bottom-color: $theme-multiple-page-control-border-color;
+      }
+      .el-tabs__nav {
+        border-color: $theme-multiple-page-control-border-color;
+        .el-tabs__item {
+          @extend %unable-select;
+          color: $theme-multiple-page-control-color;
+          background-color: $theme-multiple-page-control-background-color;
+          border-left-color: $theme-multiple-page-control-border-color;
+          &:first-child {
+            border-left: none;
+            &:hover {
+              padding: 0px 20px;
+            }
+            .el-icon-close {
+              display: none;
+            }
+          }
+        }
+        .el-tabs__item.is-active {
+          color: $theme-multiple-page-control-color-active;
+          background-color: $theme-multiple-page-control-background-color-active;
+          border-bottom-color: $theme-multiple-page-control-border-color-active;
+        }
+      }
+      %el-tabs__nav {
+        font-size: 20px;
+      }
+      .el-tabs__nav-prev {
+        @extend %el-tabs__nav;
+        color: $theme-multiple-page-control-nav-prev-color;
+      }
+      .el-tabs__nav-next {
+        @extend %el-tabs__nav;
+        color: $theme-multiple-page-control-nav-next-color;
+      }
+    }
+    .app-main {
+      border-left: 1px solid $theme-multiple-page-control-border-color;
+    }
+  }
+}
+// 主题预览
+.theme-preview.#{$theme-name} {
+  background-size: cover;
+  background-image: url(../../assets/images/theme/#{$theme-name}/preview@2x.png);
+}
