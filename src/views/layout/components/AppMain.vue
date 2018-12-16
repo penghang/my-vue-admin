@@ -25,13 +25,3 @@ export default {
 </script>
 
 <style scoped>
-.app-main {
-  /*101 = header + tags-view = 60 +41 */
-  min-height: calc(100vh - 101px);
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  background: #fff;
-}
-</style>
-

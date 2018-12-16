@@ -1,63 +1,125 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  min-height: 0;
+}
 .app-wrapper {
-  height: 100%;
-  padding-top: $header_height;
-  .app-bg-mask {
+  min-height: 100vh;
+
+  .app-header {
+    height: $header_height;
+    line-height: $header_height;
+    flex: 0 0 auto;
+    flex-direction: row;
+
+    .btn-icon {
+      font-size: 20px;
+      border-radius: 4px;
+      margin: 0!important;
+      padding: 14px 12px;
+    }
+
+    .logo {
+      width: $sidebar_width;
+      background: url(../../assets/logo.png) no-repeat center;
+      background-size: contain;
+      text-indent: -9999px;
+    }
+    .el-breadcrumb {
+      flex: auto;
+    }
+    // .theme,
+    // .user-setting {
+    //   width: 
+    // }
+  }
+
+  .app-body {
+    flex-direction: row;
+
+    .app-sidebar {
+      width: $sidebar_width;
+    }
+
+    .app-main-wrapper {
+      // 非常重要，如果没有这个属性，右侧出现el-table时宽度只增不减
+      overflow-x: hidden;
+      min-height: calc(100vh-$header_height);
+      
+      .tags-view-container {
+        height: 41px;
+        flex: 0 0 auto;
+
+        .el-tabs--card>.el-tabs__header .el-tabs__nav {
+          border-width: 1px;
+          border-style: solid;
+          border-bottom: none;
+          border-radius: 4px 4px 0 0;
+          overflow: hidden;
+        }
+
+        .contextmenu {
+          margin: 0;
+          background: #fff;
+          z-index: 100;
+          position: absolute;
+          list-style-type: none;
+          padding: 5px 0;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: 400;
+          color: #333;
+          box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+          li {
+            margin: 0;
+            padding: 7px 16px;
+            cursor: pointer;
+            &:hover {
+              background: #eee;
+            }
+          }
+        }
+      }
+      
+      .app-main {
+        flex: auto;
+        padding: 20px;
+
+        .pagination-container {
+          margin-top: 30px;
+        }
+
+        .filter-container {
+          padding-bottom: 10px;
+          .filter-item {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 10px;
+          }
+        }
+
+      }
+    }
+
+    .app-footer {
+      padding: 48px 0 24px;
+      text-align: center;
+      flex: 0 0 auto;
+
+      .antd-pro-components-global-footer-index-copyright {
+        color: rgba(0,0,0,.45);
+        font-size: 14px;
+      }
+    }
+  }
+
+  .app-bg-mask1 {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-  }
-  .app-header {
-    height: $header_height;
-    margin-top: -$header_height;
-    line-height: $header_height;
-
-    .app-header-left {
-      display: inline-block;
-      height: 100%;
-      .logo {
-        display: inline-block;
-        height: 100%;
-        width: $sidebar_width;
-        background: url(../../assets/logo.png) no-repeat center;
-        background-size: contain;
-        text-indent: -9999px;
-      }
-
-      .btn-icon {
-        font-size: 20px;
-      }
-
-      .el-breadcrumb {
-        float: right;
-      }
-    }
-    .app-header-right {
-      float: right;
-      .btn-icon {
-        font-size: 20px;
-        border-radius: 4px;
-        margin: 0!important;
-        padding: 14px 12px;
-      }
-    }
-  }
-  .app-content {
-    height: 100%;
-    padding-left: $sidebar_width;
-
-    .app-sidebar {
-      position: absolute;
-      top: $header_height;
-      left: 0;
-      bottom: 0;
-      width: $sidebar_width;
-    }
-
-    .app-main-wrapper {
-      height: 100%;
-    }
   }
   
   &.collapse {
@@ -67,11 +129,9 @@
       }
     }
 
-    .app-content{
-      padding-left: $sidebar_collapse_width;
-      .app-nav {
+    .app-body {
+      .app-sidebar {
         width: $sidebar_collapse_width;
-        margin-left: -$sidebar_collapse_width;
       }
     }
   }
@@ -80,6 +140,8 @@
     background: transparent;
   }
 }
+
+// 动画
 .animation {
   .app-header {
     .logo {
@@ -87,10 +149,9 @@
     }
   }
 
-  .app-content {
-    transition: padding-left .35s ease-out;
-    .app-nav {
-      transition: width .35s ease-out, margin-left .35s ease-out;
+  .app-body {
+    .app-sidebar {
+      transition: all .35s ease-out;
     }
   }
 }

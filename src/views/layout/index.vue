@@ -1,26 +1,26 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
-    <!-- 头部 -->
-    <div class="app-header">
-      <div class="app-header-left">
+  <div class="app-screen">
+    <div :class="classObj" class="app-wrapper app-layout">
+      <!-- 头部 -->
+      <div class="app-header app-layout">
         <i class="logo">logo</i>
         <hamburger />
         <breadcrumb />
-      </div>
-      <div class="app-header-right">
         <headersetting />
-        <theme />
-        <size />
-        <lang-select class="set-language" />
+        <theme class="can-hover" />
+        <size class="can-hover" />
+        <lang-select class="can-hover set-language" />
       </div>
-    </div>
-    <!-- 布局 -->
-    <div class="app-content">
-
-      <sidebar class="app-sidebar clearfix" />
-      <div class="app-main-wrapper">
-        <tags-view/>
-        <app-main/>
+      <!-- 布局 -->
+      <div class="app-body app-layout">
+        <sidebar class="app-sidebar" />
+        <div class="app-main-wrapper app-layout">
+          <tags-view/>
+          <app-main/>
+          <footer class="app-footer">
+            <div class="antd-pro-components-global-footer-index-copyright">Copyright <svg-icon icon-class="copyright" /> 2018 兴民智通软件部</div>
+          </footer>
+        </div>
       </div>
     </div>
   </div>

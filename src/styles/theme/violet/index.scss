@@ -2,6 +2,8 @@
 @import '../theme.scss';
 
 .theme-#{$theme-name} {
-  background: #bc00e3;
-  background: linear-gradient(120deg, #bc00e3 0%, #4EFFFB 100%);
+  .app-screen {
+    background: #bc00e3;
+    background: linear-gradient(120deg, #bc00e3 0%, #4EFFFB 100%);
+  }
 }

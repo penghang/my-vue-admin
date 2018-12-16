@@ -8,7 +8,9 @@ body {
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
-
+html, body, #app {
+  height: 100%;
+}
 label {
   font-weight: 700;
 }
@@ -34,21 +36,4 @@ a, a:hover, a:active {
 }
 .pointer {
   cursor: pointer;
-}
-
-.app-container {
-  padding: 20px;
-}
-
-.pagination-container {
-  margin-top: 30px;
-}
-
-.filter-container {
-  padding-bottom: 10px;
-  .filter-item {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 10px;
-  }
 }

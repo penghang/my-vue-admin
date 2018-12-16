@@ -1,11 +1,13 @@
 // 每个主题特有的设置
 .theme-#{$theme-name} {
-  background-color: $theme-bg-color;
-  @if $theme-bg-has-image {
-    background-image: url(../../assets/images/theme/#{$theme-name}/bg.jpg);
-    background-position: 50% top;
-    background-size: cover;
+  .app-screen {
+    background-color: $theme-bg-color;
+    @if $theme-bg-has-image {
+      background-image: url(../../assets/images/theme/#{$theme-name}/bg.jpg);
+      background-position: 50% top;
+    }
   }
+
   // 顶栏
   .app-header {
     .btn-icon,
@@ -16,14 +18,10 @@
       color: $theme-header-item-color;
     }
     
-    // 顶栏右侧
-    .app-header-right {
-      .btn-icon {
-        color: $theme-header-item-color;
-        &:hover {
-          color: $theme-header-item-color-hover;
-          background: $theme-header-item-background-color-hover;
-        }
+    .can-hover {
+      .btn-icon:hover {
+        color: $theme-header-item-color-hover;
+        background: $theme-header-item-background-color-hover;
       }
     }
   }
@@ -148,7 +146,8 @@
         color: $theme-multiple-page-control-nav-next-color;
       }
     }
-    .app-main {
+    .app-main,
+    .app-footer {
       border-left: 1px solid $theme-multiple-page-control-border-color;
     }
   }
